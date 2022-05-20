@@ -17,6 +17,7 @@
 #include "hw/virtio/virtio.h"
 #include "hw/virtio/virtio-gpu.h"
 
+#define VIRGL_RENDERER_UNSTABLE_APIS
 #include <virglrenderer.h>
 
 static struct virgl_renderer_callbacks virtio_gpu_3d_cbs;
@@ -542,12 +543,19 @@ static int virgl_make_context_current(void *opaque, int scanout_idx,
                                    qctx);
 }
 
+extern int qemu_egl_rn_fd;
+static int virgl_get_drm_fd(void *opaque)
+{
+    return qemu_egl_rn_fd;
+}
+
 static struct virgl_renderer_callbacks virtio_gpu_3d_cbs = {
     .version             = 1,
     .write_fence         = virgl_write_fence,
     .create_gl_context   = virgl_create_context,
     .destroy_gl_context  = virgl_destroy_context,
     .make_current        = virgl_make_context_current,
+    .get_drm_fd          = virgl_get_drm_fd,
 };
 
 static void virtio_gpu_print_stats(void *opaque)
@@ -601,7 +609,7 @@ int virtio_gpu_virgl_init(VirtIOGPU *g)
 {
     int ret;
 
-    ret = virgl_renderer_init(g, 0, &virtio_gpu_3d_cbs);
+    ret = virgl_renderer_init(g, VIRGL_RENDERER_USE_VIDEO, &virtio_gpu_3d_cbs);
     if (ret != 0) {
         return ret;
     }
