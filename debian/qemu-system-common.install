@@ -1,0 +1,14 @@
+/usr/bin/qemu-pr-helper
+/usr/lib/qemu/qemu-bridge-helper
+/usr/lib/x86_64-linux-gnu/qemu/accel-qtest-x86_64.so
+/usr/lib/x86_64-linux-gnu/qemu/audio-alsa.so
+/usr/lib/x86_64-linux-gnu/qemu/audio-oss.so
+/usr/lib/x86_64-linux-gnu/qemu/audio-pa.so
+/usr/lib/x86_64-linux-gnu/qemu/audio-pipewire.so
+/usr/lib/x86_64-linux-gnu/qemu/hw-display-virtio-gpu-pci.so
+/usr/lib/x86_64-linux-gnu/qemu/hw-display-virtio-gpu.so
+/usr/lib/x86_64-linux-gnu/qemu/hw-display-virtio-vga.so
+/usr/lib/x86_64-linux-gnu/qemu/hw-s390x-virtio-gpu-ccw.so
+/usr/lib/x86_64-linux-gnu/qemu/hw-usb-redirect.so
+/usr/lib/x86_64-linux-gnu/qemu/hw-usb-smartcard.so
+/usr/share/qemu/trace-events-all

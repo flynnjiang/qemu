@@ -1,0 +1,5 @@
+/usr/bin/qemu-edid
+/usr/bin/qemu-img
+/usr/bin/qemu-io
+/usr/bin/qemu-nbd
+/usr/bin/qemu-storage-daemon

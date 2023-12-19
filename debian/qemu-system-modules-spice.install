@@ -1,0 +1,5 @@
+/usr/lib/x86_64-linux-gnu/qemu/audio-spice.so
+/usr/lib/x86_64-linux-gnu/qemu/chardev-spice.so
+/usr/lib/x86_64-linux-gnu/qemu/hw-display-qxl.so
+/usr/lib/x86_64-linux-gnu/qemu/ui-spice-app.so
+/usr/lib/x86_64-linux-gnu/qemu/ui-spice-core.so

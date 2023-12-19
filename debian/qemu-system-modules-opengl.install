@@ -1,0 +1,5 @@
+/usr/lib/x86_64-linux-gnu/qemu/hw-display-virtio-gpu-gl.so
+/usr/lib/x86_64-linux-gnu/qemu/hw-display-virtio-gpu-pci-gl.so
+/usr/lib/x86_64-linux-gnu/qemu/hw-display-virtio-vga-gl.so
+/usr/lib/x86_64-linux-gnu/qemu/ui-egl-headless.so
+/usr/lib/x86_64-linux-gnu/qemu/ui-opengl.so

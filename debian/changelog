@@ -1,0 +1,5 @@
+qemu (1:8.2.0-rc4-1) UNRELEASED; urgency=low
+
+  * Initial release.
+
+ -- Feng Jiang <jiangfeng@kylinos.cn>  Tue, 19 Dec 2023 14:51:53 +0800

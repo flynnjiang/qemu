@@ -1,0 +1,181 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@
+
+# For CFLAGS, CPPFLAGS, LDFLAGS
+include /usr/share/dpkg/buildflags.mk
+
+# For DEB_VERSION
+include /usr/share/dpkg/pkg-info.mk
+
+ifeq ($(DEB_HOST_ARCH),amd64)
+targets = x86_64-softmmu
+endif
+
+ifeq ($(DEB_HOST_ARCH),arm64)
+targets = aarch64-softmmu
+endif
+
+override_dh_auto_configure:
+	meson subprojects download keycodemapdb && \
+	./configure \
+	--extra-cflags="${CFLAGS} ${CPPFLAGS} -fPIC" \
+	--extra-ldflags="${LDFLAGS} -Wl,--as-needed" \
+	--prefix=/usr \
+	--sysconfdir=/etc \
+	--libdir=/usr/lib/${DEB_HOST_MULTIARCH} \
+	--libexecdir=/usr/lib/qemu \
+	--localstatedir=/var \
+	--firmwarepath=/usr/share/qemu:/usr/share/seabios:/usr/lib/ipxe/qemu \
+	--with-pkgversion="${DEB_VERSION}" \
+	--disable-install-blobs \
+	--disable-strip \
+	--disable-download  \
+	--disable-containers \
+	--target-list=${targets} \
+	--without-default-features	\
+	--disable-af-xdp		\
+	--enable-alsa			\
+	--disable-attr			\
+	--disable-auth-pam		\
+	--disable-avx2			\
+	--disable-avx512bw		\
+	--disable-avx512f		\
+	--disable-blkio			\
+	--disable-bochs			\
+	--disable-bpf			\
+	--disable-brlapi		\
+	--enable-bzip2			\
+	--disable-canokey		\
+	--disable-cap-ng		\
+	--disable-capstone		\
+	--disable-cloop			\
+	--disable-cocoa			\
+	--disable-colo-proxy		\
+	--disable-coreaudio		\
+	--disable-crypto-afalg		\
+	--disable-curl			\
+	--disable-curses		\
+	--disable-dbus-display		\
+	--disable-dmg			\
+	--disable-docs			\
+	--disable-dsound		\
+	--disable-fuse			\
+	--disable-fuse-lseek		\
+	--disable-gcrypt		\
+	--enable-gettext		\
+	--enable-gio			\
+	--disable-glusterfs		\
+	--enable-gnutls			\
+	--enable-gtk			\
+	--enable-gtk-clipboard		\
+	--enable-guest-agent		\
+	--disable-guest-agent-msi	\
+	--disable-hv-balloon		\
+	--disable-hvf			\
+	--enable-iconv			\
+	--disable-jack			\
+	--enable-keyring		\
+	--enable-kvm			\
+	--enable-l2tpv3			\
+	--disable-libdaxctl		\
+	--enable-libdw			\
+	--enable-libiscsi		\
+	--disable-libkeyutils		\
+	--enable-libnfs			\
+	--disable-libpmem		\
+	--disable-libssh		\
+	--disable-libudev		\
+	--disable-libusb		\
+	--disable-libvduse		\
+	--enable-linux-aio		\
+	--enable-linux-io-uring		\
+	--disable-live-block-migration	\
+	--disable-lzfse			\
+	--disable-lzo			\
+	--disable-malloc-trim		\
+	--disable-membarrier		\
+	--enable-modules		\
+	--disable-mpath			\
+	--disable-multiprocess		\
+	--disable-netmap		\
+	--disable-nettle		\
+	--enable-numa			\
+	--disable-nvmm			\
+	--enable-opengl			\
+	--enable-oss			\
+	--enable-pa			\
+	--disable-parallels		\
+	--enable-pipewire		\
+	--enable-pixman			\
+	--disable-plugins		\
+	--enable-png			\
+	--disable-pvrdma		\
+	--enable-qcow1			\
+	--disable-qed			\
+	--disable-qga-vss		\
+	--disable-rbd			\
+	--enable-rdma			\
+	--disable-replication		\
+	--disable-rutabaga-gfx		\
+	--enable-sdl			\
+	--disable-sdl-image		\
+	--enable-seccomp		\
+	--enable-selinux		\
+	--disable-slirp			\
+	--disable-slirp-smbd		\
+	--enable-smartcard		\
+	--disable-snappy		\
+	--disable-sndio			\
+	--disable-sparse		\
+	--enable-spice			\
+	--enable-spice-protocol		\
+	--disable-stack-protector	\
+	--disable-tcg			\
+	--enable-tools			\
+	--enable-tpm			\
+	--disable-u2f			\
+	--enable-usb-redir		\
+	--disable-vde			\
+	--enable-vdi			\
+	--disable-vduse-blk-export	\
+	--disable-vfio-user-server	\
+	--enable-vhdx			\
+	--enable-vhost-crypto		\
+	--enable-vhost-kernel		\
+	--enable-vhost-net		\
+	--enable-vhost-user		\
+	--enable-vhost-user-blk-server	\
+	--enable-vhost-vdpa		\
+	--enable-virglrenderer		\
+	--disable-virtfs		\
+	--disable-virtfs-proxy-helper	\
+	--disable-vmdk			\
+	--disable-vmnet			\
+	--enable-vnc			\
+	--enable-vnc-jpeg		\
+	--enable-vnc-sasl		\
+	--disable-vpc			\
+	--disable-vte			\
+	--disable-vvfat			\
+	--disable-werror		\
+	--disable-whpx			\
+	--disable-xen			\
+	--disable-xen-pci-passthrough	\
+	--disable-xkbcommon		\
+	--enable-zstd			\
+	--enable-system			\
+	--disable-user			\
+	--disable-linux-user		\
+	--disable-bsd-user		\
+	--disable-pie
+
+override_dh_auto_test:
+	echo "Skip test"
+
+override_dh_auto_clean:
+	dh_clean
+
+clean:
+

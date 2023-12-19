@@ -1,0 +1,5 @@
+/usr/lib/qemu/vhost-user-gpu
+/usr/lib/x86_64-linux-gnu/qemu/audio-sdl.so
+/usr/lib/x86_64-linux-gnu/qemu/ui-gtk.so
+/usr/lib/x86_64-linux-gnu/qemu/ui-sdl.so
+/usr/share/qemu/vhost-user/50-qemu-gpu.json
